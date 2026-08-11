@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Glistening Circuitry - project ideas for electronics builders, live peer-to-peer maker rooms, and the fundamentals behind it all.">
+<title>Glistening Circuitry</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%230a120d'/%3E%3Cg stroke='%23c9a44a' stroke-width='1.5' fill='none'%3E%3Cpath d='M10 5v3M16 5v3M22 5v3M10 24v3M16 24v3M22 24v3M5 10h3M5 16h3M5 22h3M24 10h3M24 16h3M24 22h3'/%3E%3Crect x='10' y='10' width='12' height='12' rx='1'/%3E%3Crect x='14' y='14' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand" title="Glistening Circuitry">
+    <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><rect width="32" height="32" rx="3" fill="#0a120d"/><g stroke="#c9a44a" stroke-width="1.5" fill="none"><path d="M10 5v3M16 5v3M22 5v3M10 24v3M16 24v3M22 24v3M5 10h3M5 16h3M5 22h3M24 10h3M24 16h3M24 22h3"/><rect x="10" y="10" width="12" height="12" rx="1"/><rect x="14" y="14" width="4" height="4"/></g></svg>
+    <span class="brand-name">Glistening <em>Circuitry</em></span>
+  </div>
+  <nav class="nav" role="tablist">
+    <button class="nav-btn active" data-tab="home" role="tab" aria-selected="true">Project Ideas</button>
+    <button class="nav-btn" data-tab="makerspace" role="tab" aria-selected="false">Live Makerspace</button>
+    <button class="nav-btn" data-tab="fundamentals" role="tab" aria-selected="false">Fundamentals</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ HOME / PROJECT IDEAS ============ -->
+  <section id="tab-home" class="tab-panel active" role="tabpanel">
+    <div class="hero">
+      <span class="eyebrow">ELECTRONICS · MAKER ROOMS · FUNDAMENTALS</span>
+      <h1>Find your next build.</h1>
+      <p>Project ideas for electronics builders, live peer-to-peer rooms for hands-on help, and fundamentals you can actually use. No account, no server — everything runs in your browser. Start with a lesson in <button class="linklike" data-goto="fundamentals">Fundamentals</button>, then show it off in a live <button class="linklike" data-goto="makerspace">makerspace</button>.</p>
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="search" type="search" placeholder="Search projects… e.g. '555 timer', 'solar', 'amplifier'" autocomplete="off">
+      </div>
+      <div class="filters">
+        <div class="chiprow" id="cat-chips" role="group" aria-label="Filter by category"></div>
+        <select id="diff-filter" aria-label="Filter by difficulty">
+          <option value="all">Any difficulty</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-meta">
+      <span id="result-count">0 projects</span>
+      <span id="result-note"></span>
+    </div>
+    <div id="project-grid" class="grid"></div>
+    <div id="no-results" class="empty" hidden>
+      <p><strong>No matches.</strong> Try a different word, or clear the difficulty filter.</p>
+    </div>
+  </section>
+
+  <!-- ============ MAKERSPACE ============ -->
+  <section id="tab-makerspace" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2>Live Makerspace</h2>
+      <p>Peer-to-peer video rooms for building together. One of you hosts, the rest join with the room code; video flows browser-to-browser and never touches a server. Share your screen, ask for help, and chat while you build.</p>
+    </div>
+
+    <div class="ms-layout">
+      <aside class="ms-side">
+        <div class="card">
+          <h3>Join or host a room</h3>
+          <label class="field"><span>Your display name</span>
+            <input id="ms-name" type="text" maxlength="24" placeholder="e.g. Lin from Texas">
+          </label>
+          <label class="field"><span>Room code</span>
+            <div class="row">
+              <input id="ms-room" type="text" maxlength="40" placeholder="e.g. solar-bench-7" spellcheck="false">
+              <button class="btn ghost" id="ms-random" title="Random room name">Dice</button>
+            </div>
+          </label>
+          <div class="row toggles">
+            <label class="switch"><input type="checkbox" id="ms-cam" checked><span>Camera</span></label>
+            <label class="switch"><input type="checkbox" id="ms-mic" checked><span>Mic</span></label>
+          </div>
+          <div class="row">
+            <button class="btn primary" id="ms-host">Host a room</button>
+            <button class="btn" id="ms-join">Join room</button>
+          </div>
+          <p class="hint" id="ms-secure-note"></p>
+          <p class="hint">Tip: open this page in two tabs, browser windows, or phones on the same URL. One of you hosts, the other joins with the same room code.</p>
+        </div>
+
+        <div class="card">
+          <h3>Room status</h3>
+          <div id="ms-status" class="status-box"><span class="pill idle">Not connected</span>
+            <div id="ms-log"></div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="ms-main">
+        <div id="ms-call" class="card call-area" hidden>
+          <div class="call-head">
+            <div>
+              <h3 id="ms-room-label">Room: —</h3>
+              <span id="ms-role-label" class="muted small"></span>
+            </div>
+            <div class="row call-controls">
+              <button class="ctrl" id="btn-mic" title="Toggle microphone">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M8 22h8"/></svg>
+                <span>Mic</span>
+              </button>
+              <button class="ctrl" id="btn-cam" title="Toggle camera">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="13" height="12" rx="2"/><path d="m15 10 6-3v10l-6-3"/></svg>
+                <span>Cam</span>
+              </button>
+              <button class="ctrl" id="btn-screen" title="Share your screen">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <span id="btn-screen-label">Share</span>
+              </button>
+              <button class="ctrl danger" id="btn-leave" title="Leave room">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                <span>Leave</span>
+              </button>
+            </div>
+          </div>
+          <div id="video-grid" class="video-grid"></div>
+        </div>
+
+        <div class="card chat-area" id="ms-chat" hidden>
+          <h3>Makerspace chat</h3>
+          <div id="chat-msgs" class="chat-msgs"></div>
+          <form id="chat-form" class="chat-form">
+            <input id="chat-input" type="text" maxlength="500" placeholder="Type a message…" autocomplete="off">
+            <button class="btn primary" type="submit">Send</button>
+          </form>
+        </div>
+
+        <div id="ms-prejoin" class="card empty">
+          <p>Pick a display name and a room code, then press <strong>Host a room</strong> (to start a new space) or <strong>Join room</strong> (to connect to an existing one).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FUNDAMENTALS ============ -->
+  <section id="tab-fundamentals" class="tab-panel" role="tabpanel">
+    <div class="panel-head">
+      <h2>Fundamentals</h2>
+      <p>Short, practical lessons on the core ideas behind every build in this hub. Read a lesson, play with the calculator, mark it done.</p>
+    </div>
+    <div class="fund-layout">
+      <aside class="fund-side card">
+        <div class="progress-row">
+          <span class="muted">Progress</span>
+          <strong id="fund-progress">0 / 0</strong>
+        </div>
+        <div class="progress-bar"><div id="fund-bar"></div></div>
+        <nav id="lesson-list" class="lesson-list"></nav>
+      </aside>
+      <article class="card lesson-article" id="lesson-article">
+        <p class="muted">Select a lesson from the list to begin.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>Glistening Circuitry</span>
+  <span>peer-to-peer WebRTC · runs 100% in your browser</span>
+</footer>
+
+<div id="modal-root"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/makerspace.js"></script>
+</body>
+</html>
