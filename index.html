@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Glistening Circuitry - project ideas for electronics builders, live peer-to-peer maker rooms, and the fundamentals behind it all.">
 <title>Glistening Circuitry</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%230a120d'/%3E%3Cg stroke='%23c9a44a' stroke-width='1.5' fill='none'%3E%3Cpath d='M10 5v3M16 5v3M22 5v3M10 24v3M16 24v3M22 24v3M5 10h3M5 16h3M5 22h3M24 10h3M24 16h3M24 22h3'/%3E%3Crect x='10' y='10' width='12' height='12' rx='1'/%3E%3Crect x='14' y='14' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23021408'/%3E%3Cg stroke='%2333ff66' stroke-width='1.5' fill='none'%3E%3Cpath d='M10 5v3M16 5v3M22 5v3M10 24v3M16 24v3M22 24v3M5 10h3M5 16h3M5 22h3M24 10h3M24 16h3M24 22h3'/%3E%3Crect x='10' y='10' width='12' height='12' rx='1'/%3E%3Crect x='14' y='14' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,15 +13,23 @@
 </head>
 <body>
 
+<div class="term-window">
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="term-titlebar">
+    <div class="term-dots"><span class="dot dot-r"></span><span class="dot dot-a"></span><span class="dot dot-g"></span></div>
+    <div class="term-title">glistening-circuitry — zsh<span class="cursor"></span></div>
+    <div class="term-menu"><span>File</span><span>Edit</span><span>View</span><span>Help</span></div>
+  </div>
+  <div class="term-screen">
+
 <header class="topbar">
   <div class="brand" title="Glistening Circuitry">
-    <svg viewBox="0 0 32 32" width="26" height="26" aria-hidden="true"><rect width="32" height="32" rx="3" fill="#0a120d"/><g stroke="#c9a44a" stroke-width="1.5" fill="none"><path d="M10 5v3M16 5v3M22 5v3M10 24v3M16 24v3M22 24v3M5 10h3M5 16h3M5 22h3M24 10h3M24 16h3M24 22h3"/><rect x="10" y="10" width="12" height="12" rx="1"/><rect x="14" y="14" width="4" height="4"/></g></svg>
-    <span class="brand-name">Glistening <em>Circuitry</em></span>
+    <span class="brand-name">glistening-<em>circuitry</em>:~$</span>
   </div>
   <nav class="nav" role="tablist">
-    <button class="nav-btn active" data-tab="home" role="tab" aria-selected="true">Project Ideas</button>
-    <button class="nav-btn" data-tab="makerspace" role="tab" aria-selected="false">Live Makerspace</button>
-    <button class="nav-btn" data-tab="fundamentals" role="tab" aria-selected="false">Fundamentals</button>
+    <button class="nav-btn active" data-tab="home" role="tab" aria-selected="true">[ 1 ] Project Ideas</button>
+    <button class="nav-btn" data-tab="makerspace" role="tab" aria-selected="false">[ 2 ] Makerspace</button>
+    <button class="nav-btn" data-tab="fundamentals" role="tab" aria-selected="false">[ 3 ] Fundamentals</button>
   </nav>
 </header>
 
@@ -30,12 +38,17 @@
   <!-- ============ HOME / PROJECT IDEAS ============ -->
   <section id="tab-home" class="tab-panel active" role="tabpanel">
     <div class="hero">
-      <span class="eyebrow">ELECTRONICS · MAKER ROOMS · FUNDAMENTALS</span>
-      <h1>Find your next build.</h1>
+      <span class="eyebrow">$ ./gc --browse</span>
+      <h1 class="gt" aria-label="Find your next build.">
+        <span class="gt-base" aria-hidden="true">Find your next build.</span>
+        <span class="gt-fg" aria-hidden="true">Find your next build.</span>
+        <span class="gt-cursor" aria-hidden="true"></span>
+      </h1>
       <p>Project ideas for electronics builders, live peer-to-peer rooms for hands-on help, and fundamentals you can actually use. No account, no server — everything runs in your browser. Start with a lesson in <button class="linklike" data-goto="fundamentals">Fundamentals</button>, then show it off in a live <button class="linklike" data-goto="makerspace">makerspace</button>.</p>
       <div class="searchbar">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="search" type="search" placeholder="Search projects… e.g. '555 timer', 'solar', 'amplifier'" autocomplete="off">
+        <span class="prompt-sign">&gt;</span>
+        <input id="search" type="search" placeholder="find a project… e.g. 555 timer, solar, amplifier" autocomplete="off">
+        <span class="tcaret" id="search-caret" aria-hidden="true"></span>
       </div>
       <div class="filters">
         <div class="chiprow" id="cat-chips" role="group" aria-label="Filter by category"></div>
@@ -167,14 +180,18 @@
 </main>
 
 <footer class="footer">
-  <span>Glistening Circuitry</span>
-  <span>peer-to-peer WebRTC · runs 100% in your browser</span>
+  <span><span class="led-on">&#9679;</span> glistening-circuitry v1.0</span>
+  <span><span id="status-projects">14 projects</span> · tab:<span id="status-tab">browse</span> · p2p:<span id="status-p2p">idle</span><span class="cursor"></span></span>
 </footer>
+
+  </div><!-- /term-screen -->
+</div><!-- /term-window -->
 
 <div id="modal-root"></div>
 
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 <script src="js/makerspace.js"></script>
+<script src="js/bg-dots.js"></script>
 </body>
 </html>

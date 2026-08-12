@@ -81,6 +81,14 @@
 
   function setStatus(html) {
     ui.status.innerHTML = html;
+    const tmp = document.createElement("div");
+    tmp.innerHTML = html;
+    const pill = tmp.querySelector(".pill");
+    const mode = pill && pill.classList.contains("live") ? "live"
+      : pill && pill.classList.contains("host") ? "hosting"
+      : "idle";
+    const statusP2p = document.getElementById("status-p2p");
+    if (statusP2p) statusP2p.textContent = mode;
   }
 
   function resetStatus() {
