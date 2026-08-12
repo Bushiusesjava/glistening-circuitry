@@ -9,4 +9,4 @@
 /dataSources/
 /dataSources.local.xml
 #ignore api keys
-.json
+*.json
