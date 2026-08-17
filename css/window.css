@@ -1,0 +1,62 @@
+/* ============================================================
+   window.css  -  the giant terminal window frame + CRT chrome
+   ============================================================ */
+
+/* ---------- Terminal window frame ---------- */
+.term-window {
+  position: relative;
+  width: min(1680px, 100% - 48px);
+  height: calc(100vh - 48px);
+  margin: 24px auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border-bright);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 0 1px #000, 0 24px 70px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+.term-titlebar {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; gap: 22px;
+  padding: 16px 26px;
+  background: var(--chrome);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.term-dots { display: flex; gap: 11px; }
+.dot { width: 13px; height: 13px; border-radius: 50%; }
+.dot-r { background: #ff4d5e; }
+.dot-a { background: #b8ff3d; }
+.dot-g { background: #33ff66; }
+.term-title { flex: 1; text-align: center; font-size: 0.86rem; color: var(--muted); letter-spacing: 0.04em; }
+.term-menu { display: flex; gap: 22px; font-size: 0.8rem; color: var(--muted); }
+.term-menu span { cursor: pointer; }
+.term-menu span:hover { color: var(--bright); }
+.term-screen {
+  flex: 1; overflow-y: auto; position: relative; z-index: 1;
+  display: flex; flex-direction: column; min-height: 0;
+  background: rgba(0, 0, 0, 0.90);
+}
+
+/* WebGL background dot matrix (behind the window chrome) */
+#bg-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block; pointer-events: none;
+  z-index: 0;
+}
+
+/* CRT overlays: scanlines + vignette */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 9997;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.09) 0 1px, transparent 1px 3px);
+}
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 9996;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 70%, rgba(0, 0, 0, 0.28));
+}

@@ -1,9 +1,9 @@
 /* ============================================================
-   Glistening Circuitry — background dot matrix
+   Glistening Circuitry  -  background dot matrix
    A direct vanilla port of the 21st "dot grid" WebGL shader:
    dots light up in a wave from the center, then keep shimmering.
    Phosphor-green tint to match the terminal theme.
-   Pure WebGL2 — no dependencies.
+   Pure WebGL2  -  no dependencies.
    ============================================================ */
 
 (function () {
@@ -157,7 +157,7 @@
   }
 
   if (reduced) {
-    /* static frame — wave already propagated */
+    /* static frame  -  wave already propagated */
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.uniform1f(gl.getUniformLocation(prog, "u_time"), 20.0);
     gl.drawArrays(gl.TRIANGLES, 0, 3);

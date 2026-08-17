@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Glistening Circuitry: sign in to unlock project ideas, live maker rooms, and fundamentals.">
+<title>Glistening Circuitry | auth</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23021408'/%3E%3Cg stroke='%2333ff66' stroke-width='1.5' fill='none'%3E%3Cpath d='M10 5v3M16 5v3M22 5v3M10 24v3M16 24v3M22 24v3M5 10h3M5 16h3M5 22h3M24 10h3M24 16h3M24 22h3'/%3E%3Crect x='10' y='10' width='12' height='12' rx='1'/%3E%3Crect x='14' y='14' width='4' height='4'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/window.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/effects.css">
+<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<div class="login-wrap">
+  <div class="login-card">
+    <div class="login-bar">
+      <span class="led-on">&#9679;</span>
+      <span>glistening-circuitry</span>
+      <span class="bar-line"></span>
+      <span class="bar-x">auth://terminal</span>
+    </div>
+    <div class="login-body">
+      <span class="login-brand">glistening-<em>circuitry</em>:~$</span>
+      <span class="login-sub">restricted access; identify yourself</span>
+
+      <h2 id="auth-heading" class="login-heading">sign in</h2>
+      <p id="auth-sub" class="login-subline">Welcome back; authenticate to continue.</p>
+
+      <div class="auth-tabs" role="tablist">
+        <button type="button" class="auth-tab active" id="auth-tab-signin" role="tab" aria-selected="true">sign in</button>
+        <button type="button" class="auth-tab" id="auth-tab-signup" role="tab" aria-selected="false">create account</button>
+      </div>
+
+      <form id="auth-form" class="auth-form" autocomplete="on">
+        <label class="field"><span>Email</span>
+          <input id="auth-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+        </label>
+        <label class="field"><span>Password</span>
+          <input id="auth-password" type="password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+          <div id="pw-strength" class="pw-strength" hidden>
+            <div class="pw-track"><div id="pw-strength-bar" class="pw-bar pw-0"></div></div>
+            <span id="pw-strength-label" class="pw-label"></span>
+          </div>
+        </label>
+        <p id="auth-msg" class="auth-msg" aria-live="polite"></p>
+        <button type="submit" id="auth-submit" class="btn primary">Sign in</button>
+      </form>
+
+      <p class="login-footer">
+        Or keep browsing <button class="linklike" onclick="window.location.href='index.html'">without an account</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<script src="js/bg-dots.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

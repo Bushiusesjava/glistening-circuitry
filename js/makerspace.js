@@ -1,5 +1,5 @@
 /* ============================================================
-   Spark Workshop — makerspace.js
+   Spark Workshop  -  makerspace.js
    Live video rooms + chat via PeerJS (WebRTC, no server data)
    ============================================================ */
 
@@ -65,7 +65,7 @@
       const s = document.createElement("script");
       s.src = PEERJS_URL;
       s.onload = () => (window.Peer ? resolve(window.Peer) : reject(new Error("PeerJS loaded but unavailable")));
-      s.onerror = () => reject(new Error("Could not load PeerJS from CDN — check your internet connection."));
+      s.onerror = () => reject(new Error("Could not load PeerJS from CDN  -  check your internet connection."));
       document.head.appendChild(s);
     });
     return peerScriptLoading;
@@ -120,7 +120,7 @@
       ui.secureNote.textContent = "Camera & microphone need a secure context. Serve this folder over https:// or localhost.";
       ui.secureNote.style.color = "var(--red)";
     } else {
-      ui.secureNote.textContent = "Peer-to-peer video — your stream goes directly to other browsers, never through a server.";
+      ui.secureNote.textContent = "Peer-to-peer video  -  your stream goes directly to other browsers, never through a server.";
     }
   }
 
@@ -264,7 +264,7 @@
     const who = MS.isHost ? "Guest" : "Host";
     log((conn.peer.includes("-host") ? "Host" : "Guest") + " connected (" + conn.peer.slice(0, 18) + "…)", "ok");
     if (MS.isHost) {
-      try { conn.send({ type: "chat", from: MS.name, text: "Hello — I'm hosting this room." }); } catch (e) {}
+      try { conn.send({ type: "chat", from: MS.name, text: "Hello  -  I'm hosting this room." }); } catch (e) {}
     }
     void who;
   }
@@ -341,7 +341,7 @@
       log("Room ready. Others can now join with room code: " + room, "ok");
       setStatus('<span class="pill live">Hosting · ' + escapeHtml(room) + "</span>");
       ui.roomLabel.textContent = "Room: " + room;
-      ui.roleLabel.textContent = MS.name + " (host) — waiting for guests…";
+      ui.roleLabel.textContent = MS.name + " (host)  -  waiting for guests…";
       enterCallUi();
       addLocalTile();
     });
@@ -357,7 +357,7 @@
     });
 
     peer.on("disconnected", () => {
-      if (MS.started) log("Signaling link dropped — reconnecting…", "err");
+      if (MS.started) log("Signaling link dropped  -  reconnecting…", "err");
       setTimeout(() => { if (MS.peer && MS.peer.disconnected && !MS.peer.destroyed) { try { MS.peer.reconnect(); } catch (e) {} } }, 1500);
     });
   }
@@ -387,7 +387,7 @@
       log("Connected to signaling. Dialing the host…");
       setStatus('<span class="pill live">In room · ' + escapeHtml(room) + "</span>");
       ui.roomLabel.textContent = "Room: " + room;
-      ui.roleLabel.textContent = MS.name + " — connecting to host…";
+      ui.roleLabel.textContent = MS.name + "  -  connecting to host…";
       enterCallUi();
       addLocalTile();
 
@@ -405,7 +405,7 @@
         removeTile(conn.peer);
       });
       conn.on("error", () => {
-        log("Data link error — is the host online and using this exact room code?", "err");
+        log("Data link error  -  is the host online and using this exact room code?", "err");
         MS.conns.delete(conn.peer);
       });
 

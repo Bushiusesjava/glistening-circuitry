@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Secrets & API keys
+js/firebase-config.js
+opencode.json
+.env
+.env.*
+*.env
+
+# IDE
+.idea/
+
+# OS junk
+Thumbs.db
+.DS_Store
+
+# Package lock (optional, uncomment if desired)
+# package-lock.json

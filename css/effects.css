@@ -1,0 +1,56 @@
+/* ============================================================
+   effects.css  -  footer, spark clicks, motion preferences
+   ============================================================ */
+
+/* ---------- Footer / status bar ---------- */
+.footer {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+  flex-shrink: 0;
+  color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em;
+  padding: 18px clamp(28px, 4vw, 56px);
+  background: var(--chrome-2);
+  border-top: 1px solid var(--border);
+}
+.led-on { color: var(--green); }
+.auth-user { display: inline-flex; align-items: center; gap: 10px; }
+.auth-user .linklike { font-size: 0.74rem; }
+.auth-guest { display: inline-flex; align-items: center; gap: 10px; color: var(--muted); font-size: 0.74rem; }
+.auth-guest .linklike { font-size: 0.74rem; }
+.term-menu .auth-menu { color: var(--green); }
+.term-menu .auth-menu:hover { color: var(--bright); }
+
+/* ---------- Spark click effect ---------- */
+#spark-layer { position: fixed; inset: 0; pointer-events: none; z-index: 9999; overflow: hidden; }
+.spark {
+  position: absolute;
+  width: var(--size, 4px); height: var(--size, 4px);
+  border-radius: 50%;
+  animation: sparkFly var(--dur, 0.6s) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+.spark-flash {
+  position: absolute;
+  width: 8px; height: 8px; margin: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(51, 255, 102, 0.9), rgba(51, 255, 102, 0) 70%);
+  animation: sparkFlash 0.35s ease-out forwards;
+}
+@keyframes sparkFly {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  70% { opacity: 0.9; }
+  100% { transform: translate(var(--dx, 0px), var(--dy, -20px)) scale(0.05); opacity: 0; }
+}
+@keyframes sparkFlash {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(9); opacity: 0; }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}

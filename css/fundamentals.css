@@ -1,0 +1,69 @@
+/* ============================================================
+   fundamentals.css  -  lesson list, lesson article, calculators
+   ============================================================ */
+
+.fund-layout { display: grid; grid-template-columns: minmax(300px, 340px) 1fr; gap: 40px; align-items: start; }
+.fund-side { position: sticky; top: 96px; }
+.progress-row { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 12px; }
+.progress-bar {
+  height: 14px; background: var(--chrome-2); border: 1px solid var(--border);
+  margin-bottom: 28px; overflow: hidden;
+}
+.progress-bar > div {
+  height: 100%; width: 0; background: var(--green);
+  background-image: repeating-linear-gradient(90deg, transparent 0 5px, rgba(0, 0, 0, 0.35) 5px 7px);
+  transition: width 0.3s;
+}
+.lesson-list { display: grid; gap: 12px; max-height: 60vh; overflow-y: auto; }
+.lesson-btn {
+  display: flex; align-items: center; gap: 14px; text-align: left; width: 100%;
+  background: none; border: 1px solid transparent; color: var(--muted);
+  padding: 15px 18px; cursor: pointer; font-size: 0.92rem; transition: all 0.12s;
+}
+.lesson-btn:hover { color: var(--bright); background: var(--chrome-2); }
+.lesson-btn.active { color: var(--bright); background: var(--chrome-2); border-color: var(--border-bright); border-left: 3px solid var(--green); }
+.lesson-num {
+  flex: 0 0 26px; height: 26px; display: grid; place-items: center;
+  font-size: 0.72rem; font-weight: 700;
+  background: var(--chrome-2); color: var(--muted); border: 1px solid var(--border);
+}
+.lesson-btn.done .lesson-num { color: var(--green); border-color: var(--green); }
+.lesson-btn .l-title { flex: 1; }
+.lesson-btn .check { color: var(--green); font-weight: 700; }
+.lesson-article { max-width: 920px; }
+.lesson-article .lesson-head { margin-bottom: 18px; }
+.lesson-article h2 { margin: 0; }
+.lesson-article .level { color: var(--green); font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; }
+.lesson-article blockquote {
+  margin: 18px 0; padding: 16px 20px; border-left: 3px solid var(--green);
+  background: var(--chrome-2); color: var(--text);
+}
+.lesson-article blockquote p { margin: 0; }
+.lesson-article ul, .lesson-article ol { padding-left: 24px; }
+.lesson-article li { margin-bottom: 7px; }
+.lesson-article code, .formula {
+  background: var(--chrome-2); border: 1px solid var(--border);
+  padding: 3px 8px; font-family: var(--mono); font-size: 0.9em;
+}
+.formula { display: inline-block; padding: 10px 16px; margin: 8px 0; color: var(--green); border: 1px dashed var(--gold-dim); font-size: 0.97em; }
+.lesson-article table { border-collapse: collapse; width: 100%; font-size: 0.9rem; margin: 14px 0; }
+.lesson-article th, .lesson-article td { border: 1px solid var(--border); padding: 10px 13px; text-align: left; }
+.lesson-article th { background: var(--chrome-2); color: var(--green); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.lesson-done-row { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--border); }
+
+/* ---------- Calculator ---------- */
+.calc {
+  background: var(--chrome-2); border: 1px dashed var(--gold-dim);
+  padding: clamp(24px, 3vw, 36px); margin: 28px 0;
+}
+.calc h4 { color: var(--amber); margin-bottom: 6px; font-size: 0.92rem; letter-spacing: 0.04em; }
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 16px; margin: 14px 0; }
+.calc label { display: block; font-size: 0.68rem; color: var(--muted); margin-bottom: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.calc input, .calc select {
+  width: 100%; background: var(--panel-2); border: 1px solid var(--border);
+  color: var(--text); padding: 12px 14px; outline: none; font-size: 0.92rem;
+  caret-color: var(--green);
+}
+.calc input:focus { border-color: var(--green); }
+.calc-out { font-weight: 700; color: var(--green); min-height: 1.5em; margin: 8px 0 0; font-size: 0.92rem; }
+.calc-out.err { color: var(--red); }
