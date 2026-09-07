@@ -18,3 +18,18 @@
 ##### You always have the choice to either keep your logs private or share them to a public forum displayed within the Makerspace.
 ### If you prefer to explain your project live, create a live session for others to join in the Makerspace and share your projects over live video feed and chat!
 
+--- 
+
+
+## Upcoming changes
+
+---
+High-priority backlog items, largest change first. Full details live in `backlog/BACKLOG.md`.
+
+1. **Built-in Multi Calculator** *(large)*: a general screen-based solver that computes any electronics quantity (Ohm's law, power, series/parallel, RC/RL/RLC, capacitor charge, LED resistor, voltage divider, battery energy, frequency/period) from whatever values you supply, leaving any single field blank to solve for it.
+---
+2. **Enforcing Censorship** *(medium-large)*: route makerspace text chat through Firestore as a moderated relay with Security Rules (auth required, blocked terms rejected, empty/oversized messages rejected, per-user rate limit) so the content filter can't be bypassed client-side. P2P video stays as-is.
+---
+3. **Makerspace Censorship System** *(medium: done)*: client-side filter over makerspace chat, room names, and usernames: severe terms are hard-blocked, lighter profanity is masked with `****`, with leetspeak/repeated-char bypasses caught.
+
+**Build order:** censorship system (done) → enforcement → multi calculator.
