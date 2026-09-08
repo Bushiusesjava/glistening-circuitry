@@ -20,10 +20,8 @@
 
 --- 
 
-
 ## Upcoming changes
 
----
 High-priority backlog items, largest change first. Full details live in `backlog/BACKLOG.md`.
 
 1. **Built-in Multi Calculator** *(large)*: a general screen-based solver that computes any electronics quantity (Ohm's law, power, series/parallel, RC/RL/RLC, capacitor charge, LED resistor, voltage divider, battery energy, frequency/period) from whatever values you supply, leaving any single field blank to solve for it.
